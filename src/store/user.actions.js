@@ -9,6 +9,7 @@ export function onLogin(credentials) {
                 type: 'SET_USER',
                 user
             })
+            return user
         }
         catch (err) {
             showErrorMsg('Wrong username or password')
@@ -25,6 +26,7 @@ export function onSignup(credentials) {
                 type: 'SET_USER',
                 user
             })
+            return user
         }
         catch (err) {
             showErrorMsg('Cannot signup')

@@ -11,13 +11,13 @@ function _LoginSignup(props) {
     const onSubmit = async (ev) => {
         ev.preventDefault();
         if (username.trim() && password.trim()) {
+            let res
             if (!isLogin) {
-                props.onSignup({ username, password, fullname });
-                props.history.push("/");
+                res = props.onSignup({ username, password, fullname });
             } else {
-                    props.onLogin({ username, password });
-                    props.history.push("/");
+                res = await props.onLogin({ username, password });
             }
+            if (res) props.history.push("/");
         }
     };
 
