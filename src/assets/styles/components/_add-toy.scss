@@ -1,0 +1,41 @@
+.add-toy {
+    margin-top: 15px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .label-container{
+        input {
+            background-color: whitesmoke;
+            height: 40px;
+            border-radius: 5px;
+            outline: 0;
+            border: 1px solid gainsboro;
+            padding: 10px;
+            margin: 0 0.5rem 0.5rem;
+        }
+    }
+    
+    .select {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .btn-add {
+        border: 0;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 1.8rem;
+        color: $clr5;
+        cursor: pointer;
+        transition: 0.3s;
+        background-color: #1dc80e;
+        &:hover {
+            transform: scale(1.1);
+            opacity: 0.6;
+        }
+    }
+}

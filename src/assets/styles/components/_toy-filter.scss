@@ -1,0 +1,30 @@
+.toy-filter-container {
+   .filter-options{
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      .filter-option{
+         padding: 0 1rem 0.5rem;
+      }
+   }
+
+   .toy-input{
+    padding: 10px 25px;
+    border-radius: 2px;
+    border: none;
+    align-self: center;
+    font-size: 1rem;
+    box-shadow: 0 0 5px -1px grey;
+    color: rgb(42, 40, 40);
+    margin-bottom: 0.5rem;
+   }
+
+   .filter-toy{
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+   }
+}

@@ -1,0 +1,44 @@
+.main-header {
+    width: 100%;
+    text-align: center;
+
+    a {
+        text-decoration: none;
+        margin-inline: 1rem;
+    }
+
+    .btn-action {
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .reg-nav {
+        display: flex;
+        justify-content: space-around;
+        height: 13vh;
+        border-radius: 10px;
+        background: #faebd75c;
+    }
+    .nav-header {
+        align-self: center;
+    }
+    .reg-nav a {
+        color: $clr2;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 35px 24px;
+    }
+    .reg-nav a span{
+        border-radius: 1rem;
+        padding: 7px;
+    }
+
+    .reg-nav a span:hover{
+        background-color: rgba(255, 200, 48, 0.183);
+    }
+}
