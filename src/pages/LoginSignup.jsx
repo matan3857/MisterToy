@@ -1,125 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { onLogin, onLogout, onSignup } from '../store/user.actions.js'
-import { UserMsg } from '../cmps/UserMsg.jsx'
 
+function _LoginSignup(props) {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [fullname, setFullname] = useState("");
+    const [isLogin, setIsLogin] = useState(true);
 
-class _LoginSignup extends React.Component {
-    state = {
-        credentials: {
-            username: '',
-            password: '',
-            fullname: ''
-        },
-        isSignup: false
-    }
-
-    clearState = () => {
-        const clearTemplate = {
-            credentials: {
-                username: '',
-                password: '',
-                fullname: ''
-            },
-            isSignup: false
+    const onSubmit = async (ev) => {
+        ev.preventDefault();
+        if (username.trim() && password.trim()) {
+            if (!isLogin) {
+                props.onSignup({ username, password, fullname });
+                props.history.push("/");
+            } else {
+                    props.onLogin({ username, password });
+                    props.history.push("/");
+            }
         }
-        this.setState({ clearTemplate })
-    }
+    };
 
-    handleChange = (ev) => {
-        const field = ev.target.name;
-        const value = ev.target.value;
-        this.setState({ credentials: { ...this.state.credentials, [field]: value } });
-    }
-
-    onLogin = (ev = null) => {
-        if (!this.state.credentials.username || !this.state.credentials.password) return;
-        if (ev) ev.preventDefault();
-        this.props.onLogin(this.state.credentials);
-        this.clearState()
-        setTimeout(() => {
-            this.props.history.push('/');
-        }, 100);
-    }
-
-    onSignup = (ev = null) => {
-        if (!this.state.credentials.username || !this.state.credentials.password || !this.state.credentials.fullname) return;
-        if (ev) ev.preventDefault();
-        this.props.onSignup(this.state.credentials);
-        this.clearState()
-    }
-
-    toggleSignup = () => {
-        this.setState({ isSignup: !this.state.isSignup })
-    }
-
-    render() {
-        const { username, password, fullname } = this.state.credentials;
-        const { isSignup } = this.state;
-        return (
-            <div className="login-page">
-                <p>
-                    <button className="btn-link" onClick={this.toggleSignup}>{!isSignup ? 'Switch to Signup' : 'Switch to Login'}</button>
-                </p>
-                {!isSignup && <form className="login-form" onSubmit={this.onLogin}>
+    return (
+        <div className="login-signup">
+            <div className="login-container flex column">
+                <p>{isLogin ? 'Log in ' : 'Sign up '} to Mister Toy</p>
+                <form className="login-form" onSubmit={onSubmit}>
                     <input
                         type="text"
-                        name="username"
                         value={username}
+                        onChange={(ev) => setUsername(ev.target.value)}
                         placeholder="Username"
-                        onChange={this.handleChange}
-                        required
                         autoFocus
                     />
                     <input
                         type="password"
-                        name="password"
                         value={password}
-                        placeholder="Password"
-                        onChange={this.handleChange}
-                        required
+                        onChange={(ev) => setPassword(ev.target.value)}
+                        placeholder="Enter Password"
                     />
-                    <button className="login-signup-btn">Login!</button>
-                </form>}
-
-                <div className="signup-section">
-                    {isSignup && <form className="signup-form" onSubmit={this.onSignup}>
+                    {!isLogin &&
                         <input
                             type="text"
-                            name="fullname"
                             value={fullname}
+                            onChange={(ev) => setFullname(ev.target.value)}
                             placeholder="Fullname"
-                            onChange={this.handleChange}
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="username"
-                            value={username}
-                            placeholder="Username"
-                            onChange={this.handleChange}
-                            required
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            value={password}
-                            placeholder="Password"
-                            onChange={this.handleChange}
-                            required
-                        />
-                        <button className="login-signup-btn">Signup!</button>
-                    </form>}
-                </div>
+                        />}
+                    <button className="login-signup-btn">{isLogin ? 'Login!' : 'SignUp!'}</button>
+                </form>
 
+                <p onClick={() => setIsLogin(!isLogin)}>
+                    {isLogin ? "Or sign up..." : "Back to Login"}
+                </p>
             </div>
-        )
-    }
-}
-
-function mapStateToProps(state) {
-    return {
-    }
+        </div>
+    )
 }
 
 const mapDispatchToProps = {
@@ -128,6 +63,4 @@ const mapDispatchToProps = {
     onLogout
 }
 
-
-
-export const LoginSignup = connect(mapStateToProps, mapDispatchToProps)(_LoginSignup)
+export const LoginSignup = connect(null, mapDispatchToProps)(_LoginSignup)

@@ -11,7 +11,7 @@ export function onLogin(credentials) {
             })
         }
         catch (err) {
-            showErrorMsg('Cannot login')
+            showErrorMsg('Wrong username or password')
             console.log('Cannot login', err)
         }
     }
