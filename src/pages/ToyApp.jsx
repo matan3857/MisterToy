@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { AddToy } from '../cmps/AddToy.jsx'
-import { loadToys, onAddToy, handleChange, onEditTodo, onRemoveToy, addToCart } from '../store/toy.actions.js'
+import { loadToys, onAddToy, handleChange, onEditTodo, onRemoveToy } from '../store/toy.actions.js'
 
 class _ToyApp extends React.Component {
     state = {

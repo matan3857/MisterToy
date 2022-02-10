@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { LabelChart } from '../cmps/LabelChart.jsx'
 import { PriceChart } from '../cmps/PriceChart.jsx'
-
 import { connect } from 'react-redux'
 
 const calcChart = (toys) => {
@@ -13,7 +11,6 @@ const calcChart = (toys) => {
     }
     for (let i = 0; i < toys.length; i++) {
         for (let j = 0; j < toys[i].labels.length; j++) {
-            console.log(toys[i].labels[j])
             toyCounts[toyTypes.indexOf(toys[i].labels[j])]++;
         }
     }

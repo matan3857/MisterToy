@@ -1,26 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import logo from '../assets/img/logo.png'
-// import home_bg from '../assets/img/home-img.jpg'
 
-class _HomePage extends React.Component {
-    state = {}
-
-    render() {
-        const { user } = this.props
-        return (
-            <section className="home-page">
-
-                {!user && <h1>Welcome to Mister-Toy!</h1>}
-                {user && <section className="user-info">
-                    <h1>Hello {user.fullname} Welcome back to Mister Toy!</h1>
-                </section>}
-                <img src={logo} alt="Logo" />
-                {/* <img src={home_bg} alt="bg" /> */}
-            </section >
-        )
-    }
+function _HomePage(props) {
+    const { user } = props
+    
+    return (
+        <section className="home-page">
+            <h1> {user ? `Hello ${user.fullname} Welcome back` : 'Welcome'} to Mister-Toy!</h1>
+            <img src={logo} alt="Logo" />
+        </section >
+    )
 }
 
 function mapStateToProps(state) {
