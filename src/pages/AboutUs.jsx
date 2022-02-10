@@ -11,10 +11,7 @@ class _AboutUs extends Component {
         isInfoWindowOn: false
     }
 
-    onMapClicked = (props, map, ev) => {
-        console.log('props', props);
-        console.log('map', map);
-        console.log('ev', ev);
+    onMapClicked = (ev) => {
         this.setState({ center: { lat: ev.latLng.lat(), lng: ev.latLng.lng() } })
     }
 
@@ -30,23 +27,6 @@ class _AboutUs extends Component {
     onInfoWindowClose = () => {
         this.setState({ isInfoWindowOn: false })
     }
-    // markers = [
-    //     {
-    //         position: {
-    //             lat: 31.25181,
-    //             lng: 34.7913
-    //         },
-    //         name: 'Be\'er Sheva'
-    //     },
-    //     {
-    //         position: {
-    //             lat: 32.794044,
-    //             lng: 34.989571
-    //         },
-    //         name: 'Haifa'
-    //     }
-    // ]
-
 
     render() {
         const style = {
@@ -55,7 +35,6 @@ class _AboutUs extends Component {
             position: 'relative',
             margin: '20px'
         }
-
 
         return (
             <div className="about-us-container">
@@ -68,13 +47,6 @@ class _AboutUs extends Component {
                         center={this.state.center}
                         containerStyle={style}
                     >
-
-                        {/* {this.state.markers.map(marker => (
-                    <Marker
-                        {...marker}
-                        onClick={this.onMarkerClicked}
-                    />
-                ))} */}
 
                         <Marker
                             position={this.state.center}
@@ -112,8 +84,6 @@ class _AboutUs extends Component {
                 </div>
                 <div className="store-info-btns">
                     <h2>Our Stores:</h2>
-
-
                     <button onClick={() => { this.onSelectStore(31.25181, 34.7913) }}>Beer Sheva</button>
                     <button onClick={() => { this.onSelectStore(32.794044, 34.989571) }}>Haifa</button>
                     <button onClick={() => { this.onSelectStore(32.109333, 34.855499) }}>Tel Aviv</button>

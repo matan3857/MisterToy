@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { AddToy } from '../cmps/AddToy.jsx'
@@ -53,7 +52,6 @@ class _ToyApp extends React.Component {
     }
 }
 
-
 function mapStateToProps(state) {
     return {
         toys: state.toyModule.toys,
@@ -61,6 +59,7 @@ function mapStateToProps(state) {
         user: state.userModule.user
     }
 }
+
 const mapDispatchToProps = {
     loadToys,
     onAddToy,
@@ -68,8 +67,4 @@ const mapDispatchToProps = {
     handleChange
 }
 
-
 export const ToyApp = connect(mapStateToProps, mapDispatchToProps)(_ToyApp)
-
-
-//{/* <button className="btn-add-toy" onClick={this.onAddToy}>Add Toy</button> */}

@@ -29,8 +29,9 @@ export class Hamburger extends React.Component {
     }
 
     render() {
+
         return (
-            <AppBar variant="outlined" position="static" >
+            <AppBar className='app-bar' variant="elevation" position="static" color='default'>
                 <Toolbar>
                     <IconButton
                         edge="start"
@@ -40,26 +41,36 @@ export class Hamburger extends React.Component {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6">Mister Toy App</Typography>
+                    <Typography variant="h6">MisterToy</Typography>
 
-                    <Drawer open={this.state.isDrawerOpen} onClose={() => this.setIsDrawerOpen(false)}>
-                        <List className='drawer' style={{ width: '250px' }}>
-                            <ListItem Link to={'/'}>
-                                <NavLink onClick={this.toggleDrawer} to='/'>Home</NavLink>
-                            </ListItem>
-
-                            <ListItem Link>
-                                <NavLink onClick={this.toggleDrawer} to='/toy'>Toys</NavLink>
+                    <Drawer className='drawer-container' open={this.state.isDrawerOpen} onClose={() => this.setIsDrawerOpen(false)}>
+                        <List className='list-container' style={{ width: '250px' }}>
+                            <ListItem>
+                                <NavLink 
+                                className={({ isActive }) => (isActive ? 'burger-active' : 'burger-inactive' + ' nav-link')}
+                                onClick={this.toggleDrawer} to='/'>Home</NavLink>
                             </ListItem>
 
-                            <ListItem Link>
-                                <NavLink onClick={this.toggleDrawer} to='/toy/dashboard'>Dashboard</NavLink>
+                            <ListItem>
+                                <NavLink 
+                                className={({ isActive }) => (isActive ? 'burger-active' : 'burger-inactive' + ' nav-link')}
+                                onClick={this.toggleDrawer} to='/toy'>Toys</NavLink>
                             </ListItem>
-                            <ListItem Link>
-                                <NavLink onClick={this.toggleDrawer} to='/about'>About</NavLink>
+
+                            <ListItem>
+                                <NavLink 
+                                className={({ isActive }) => (isActive ? 'burger-active' : 'burger-inactive' + ' nav-link')}
+                                onClick={this.toggleDrawer} to='/toy/dashboard'>Dashboard</NavLink>
                             </ListItem>
-                            <ListItem Link>
-                                <NavLink onClick={this.toggleDrawer} to='/login'>Login</NavLink>
+                            <ListItem>
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? 'burger-active' : 'burger-inactive' + ' nav-link')}
+                                    onClick={this.toggleDrawer} to='/about'>About</NavLink>
+                            </ListItem>
+                            <ListItem>
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? 'active' : 'inactive' + ' nav-link')}
+                                    onClick={this.toggleDrawer} to='/login'>Login</NavLink>
                             </ListItem>
                         </List>
                     </Drawer>

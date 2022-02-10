@@ -1,19 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
 import { utilService } from '../services/util.service.js'
 import { toyService } from '../services/toy.service.js'
 // import { reviewService } from '../services/review.service.js'
 import { loadReviews, addReview, removeReview } from '../store/review.actions.js'
-
-
 import { ReviewList } from '../cmps/ReviewList.jsx'
 import { ReviewAdd } from '../cmps/ReviewAdd.jsx'
 import { ChatApp } from '../cmps/ChatApp.jsx';
-
-
-
 
 
 function Popup(props) {

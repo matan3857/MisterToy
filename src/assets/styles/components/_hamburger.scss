@@ -1,0 +1,25 @@
+.app-bar {
+    height: 7vh;
+    background: #faebd75c !important;
+}
+.burger-active {
+    background: #faebd75c;
+}
+
+.burger-inactive {
+    background: transparent;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: $clr2;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: 7px;
+}
+
+.nav-link:hover {
+    background-color: rgba(86, 81, 65, 0.183);
+
+}

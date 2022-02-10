@@ -23,7 +23,7 @@ class _AppHeader extends React.Component {
     }
 
     handleResize = () => {
-        (window.innerWidth < 840) ? this.setState({ isHamburger: true }) :
+        (window.innerWidth < 910) ? this.setState({ isHamburger: true }) :
             this.setState({ isHamburger: false })
     }
 
@@ -50,14 +50,9 @@ class _AppHeader extends React.Component {
                             <NavLink to="/about"><span>About</span></NavLink>
                             {!user && <NavLink to="/login"><span>Login <i className="fas fa-sign-in-alt"></i></span></NavLink>}
                             {user &&  <NavLink onClick={this.onLogout} to="/"><span>Logout <i className="fas fa-sign-out-alt"></i></span></NavLink>}
-                            
                         </nav>
                     </div>
                 }
-                {/* <h1>Welcome to Mister-Toy!</h1>
-                {user && <section className="user-info">
-                    <h3>Hello {user.fullname} Welcome back!</h3>
-                </section>} */}
                 <UserMsg />
             </header>
         )
