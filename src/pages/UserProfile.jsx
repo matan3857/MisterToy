@@ -1,66 +1,73 @@
-const { connect } = ReactRedux
-import { utilService } from '../services/util.service.js'
-import { update } from '../store/user.action.js'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+// import { onUpdate } from '../store/user.action.js'
 
-class _UserProfile extends React.Component {
-    state = {
-        user: null
-    }
+function _UserProfile(props) {
+    const { user } = props
 
-    componentDidMount() {
-        this.setState({ user: this.props.user })
-        this.props.update(this.props.user)
-    }
+    console.log('user', user)
+    const [username, setUsername] = useState('');
+    const [oldPassword, setOldPassword] = useState('');
+    // const [newPassword, setNewPassword] = useState('');
+    // const [validPassword, setValidPassword] = useState('');
+    const [fullname, setFullname] = useState('');
+    const [isAdmin, setIsAdmin] = useState(null);
 
-    handleChange = (ev) => {
-        const field = ev.target.name;
-        const value = ev.target.value;
-        if (ev.target.type === 'color')
-            this.setState(prevState => ({ ...prevState, user: { ...prevState.user, prefs: { ...prevState.user.prefs, [field]: value } } }));
-        else
-            this.setState(prevState => ({ ...prevState, user: { ...prevState.user, [field]: value } }));
+    useEffect(() => {
+        loadUser();
+    }, []);
+
+    const loadUser = async () => {
+        setUsername(user.username)
+        setFullname(user.fullname)
+        setIsAdmin(user.isAdmin)
     };
 
-    onEditUser = () => {
-        const user = { ...this.state.user }
-        this.props.update(user)
-    }
+    const onSubmit = (ev) => {
+        let password = oldPassword
+        ev.preventDefault();
+        if (username.trim() && password.trim()) {
+            let res
+            res = props.onUpdate({ username, password, fullname, isAdmin });
+        }
+}
 
-    render() {
-        const { user } = this.state
-        if (!user) return <div>Loading From User Profile...</div>
-        return (
-            <div>
-                <h1>User Profile</h1>
-                <div>
-                    <form className="edit-user" onSubmit={(ev) => { ev.preventDefault(); this.onEditUser() }}>
-                        <div>
-                            <label htmlFor="fullname">Fullname:</label>
-                            <input type="text" name="fullname" id="fullname" value={user.fullname} onChange={this.handleChange} required />
-                        </div>
-                        <div>
-                            <label htmlFor="color">Color:</label>
-                            <input type="color" name="color" value={user.prefs.color} onChange={this.handleChange} id="color"></input>
-                        </div>
-                        <div>
-                            <label htmlFor="bgColor">Background:</label>
-                            <input type="color" name="bgColor" value={user.prefs.bgColor} onChange={this.handleChange} id="bgColor"></input>
-                        </div>
-                        <button>Edit Submit</button>
-                    </form>
+return (
+    <div className="login-signup">
+        <div className="login-container flex column">
+            <p>Your Profile</p>
+            <form className="login-form" onSubmit={onSubmit}>
+                <input
+                    className='unmuttable'
+                    type="text"
+                    value={username}
+                    // onChange={(ev) => setUsername(ev.target.value)}
+                    // placeholder="Username"
+                    readOnly
+                />
+                <input
+                    type="password"
+                    value={oldPassword}
+                    onChange={(ev) => setOldPassword(ev.target.value)}
+                    placeholder="Enter Password"
+                />
+
+                <input
+                    type="text"
+                    value={fullname}
+                    onChange={(ev) => setFullname(ev.target.value)}
+                    placeholder="Fullname"
+                />
+
+                <div className='flex'>
+                    <label>Is Admin</label>
+                    <input type="checkbox" value={isAdmin} checked={isAdmin} name="isAdmin" onChange={(ev) => setIsAdmin(ev.target.value)} />
                 </div>
-                <div className="todo-container">
-                    <ul className="todo-list">
-                        {user.activities && user.activities.map(todo => (
-                            <div className="todo" key={todo._id}>
-                                <li className="todo-item">{utilService.timeSince(todo.createdAt)} ago : {todo.text}</li>
-                            </div>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        )
-    }
+                <button className="login-signup-btn">Save!</button>
+            </form>
+        </div>
+    </div>
+)
 }
 
 function mapStateToProps(state) {
@@ -70,7 +77,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    update
+    // onUpdate
 }
 
 export const UserProfile = connect(mapStateToProps, mapDispatchToProps)(_UserProfile)

@@ -20,6 +20,7 @@
     .reg-nav {
         display: flex;
         justify-content: space-around;
+        align-items: center;
         height: 13vh;
         border-radius: 10px;
         background: #faebd75c;
@@ -31,7 +32,7 @@
         color: $clr2;
         font-weight: 600;
         text-decoration: none;
-        padding: 35px 24px;
+        padding: 35px 15px;
     }
     .reg-nav a span{
         border-radius: 1rem;

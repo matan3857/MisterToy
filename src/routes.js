@@ -5,6 +5,7 @@ import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
+import { UserProfile } from './pages/UserProfile'
 
 const routes = [{
         path: '/',
@@ -29,6 +30,10 @@ const routes = [{
     {
         path: '/details/:toyId',
         component: ToyDetails,
+    },
+    {
+        path: '/myProfile',
+        component: UserProfile,
     },
     {
         path: '/about',

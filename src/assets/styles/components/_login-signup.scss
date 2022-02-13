@@ -1,4 +1,5 @@
 .login-signup {
+    background: transparent !important;
     padding-top: 50px;
     background-color: #f9fafc;
     height: calc(100vh - 70px);
@@ -29,6 +30,9 @@
         }
         form {
             width: 100%;
+            .unmuttable{
+                background: #80808026;
+            }
             input {
                 font-size: 14px;
                 background-color: #fafbfc;

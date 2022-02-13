@@ -23,7 +23,7 @@ class _AppHeader extends React.Component {
     }
 
     handleResize = () => {
-        (window.innerWidth < 910) ? this.setState({ isHamburger: true }) :
+        (window.innerWidth < 880) ? this.setState({ isHamburger: true }) :
             this.setState({ isHamburger: false })
     }
 
@@ -41,15 +41,15 @@ class _AppHeader extends React.Component {
                 {!isHamburger &&
                     <div className="reg-nav">
                         <div className="logo">
-                            <h1>MisterToy</h1>
+                            <NavLink to="/"><h1>MisterToy</h1></NavLink>
                         </div>
                         <nav className="nav-header">
-                            <NavLink to="/"><span>Home</span></NavLink>
                             <NavLink to="/toy"><span>Toys</span></NavLink>
                             <NavLink to="/toy/dashboard"><span>Dashboard</span></NavLink>
                             <NavLink to="/about"><span>About</span></NavLink>
+                            {user && <NavLink to="/myProfile"><span>My Profile</span></NavLink>}
                             {!user && <NavLink to="/login"><span>Login <i className="fas fa-sign-in-alt"></i></span></NavLink>}
-                            {user &&  <NavLink onClick={this.onLogout} to="/"><span>Logout <i className="fas fa-sign-out-alt"></i></span></NavLink>}
+                            {user && <NavLink onClick={this.onLogout} to="/"><span>Logout <i className="fas fa-sign-out-alt"></i></span></NavLink>}
                         </nav>
                     </div>
                 }
