@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-// import { onUpdate } from '../store/user.action.js'
+import { onUpdate } from '../store/user.actions'
 
 function _UserProfile(props) {
     const { user } = props
 
     console.log('user', user)
     const [username, setUsername] = useState('');
-    const [oldPassword, setOldPassword] = useState('');
-    // const [newPassword, setNewPassword] = useState('');
-    // const [validPassword, setValidPassword] = useState('');
     const [fullname, setFullname] = useState('');
-    const [isAdmin, setIsAdmin] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isUserUpdated, setIsUserUpdated] = useState(false);
 
     useEffect(() => {
         loadUser();
@@ -23,51 +21,42 @@ function _UserProfile(props) {
         setIsAdmin(user.isAdmin)
     };
 
-    const onSubmit = (ev) => {
-        let password = oldPassword
-        ev.preventDefault();
-        if (username.trim() && password.trim()) {
-            let res
-            res = props.onUpdate({ username, password, fullname, isAdmin });
-        }
-}
+    const onSubmit = async (ev) => {
+        ev.preventDefault()
+        const userId = user._id
+        let res
+        res = await props.onUpdate({ userId, username, fullname, isAdmin })
+        if (res) setIsUserUpdated(true)
+    }
 
-return (
-    <div className="login-signup">
-        <div className="login-container flex column">
-            <p>Your Profile</p>
-            <form className="login-form" onSubmit={onSubmit}>
-                <input
-                    className='unmuttable'
-                    type="text"
-                    value={username}
-                    // onChange={(ev) => setUsername(ev.target.value)}
-                    // placeholder="Username"
-                    readOnly
-                />
-                <input
-                    type="password"
-                    value={oldPassword}
-                    onChange={(ev) => setOldPassword(ev.target.value)}
-                    placeholder="Enter Password"
-                />
+    return (
+        <div className="login-signup">
+            <div className="login-container flex column">
+                <p>Your Profile</p>
+                <form className="login-form" onSubmit={onSubmit}>
+                    <input
+                        className='unmuttable'
+                        type="text"
+                        value={username}
+                        readOnly
+                    />
+                    <input
+                        type="text"
+                        value={fullname}
+                        onChange={(ev) => setFullname(ev.target.value)}
+                        placeholder="Fullname"
+                    />
 
-                <input
-                    type="text"
-                    value={fullname}
-                    onChange={(ev) => setFullname(ev.target.value)}
-                    placeholder="Fullname"
-                />
-
-                <div className='flex'>
-                    <label>Is Admin</label>
-                    <input type="checkbox" value={isAdmin} checked={isAdmin} name="isAdmin" onChange={(ev) => setIsAdmin(ev.target.value)} />
-                </div>
-                <button className="login-signup-btn">Save!</button>
-            </form>
+                    <div className='flex'>
+                        <label>Is Admin</label>
+                        <input type="checkbox" value={isAdmin} checked={isAdmin} name="isAdmin" onChange={() => setIsAdmin(!isAdmin)} />
+                    </div>
+                    {isUserUpdated && <p>User updated!</p>}
+                    <button className="login-signup-btn">Save!</button>
+                </form>
+            </div>
         </div>
-    </div>
-)
+    )
 }
 
 function mapStateToProps(state) {
@@ -77,7 +66,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    // onUpdate
+    onUpdate
 }
 
 export const UserProfile = connect(mapStateToProps, mapDispatchToProps)(_UserProfile)

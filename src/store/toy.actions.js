@@ -66,7 +66,6 @@ export function onAddToy(toy) {
 export function editToy(toy) {
     return async (dispatch) => {
         try {
-            console.log('kkk')
             const updatedToy = await toyService.save(toy)
             console.log('updatedToy',updatedToy)
             dispatch({

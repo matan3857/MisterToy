@@ -1,6 +1,7 @@
 import { utilService } from './util.service.js'
-
+import { httpService } from './http.service'
 import Axios from 'axios';
+
 const axios = Axios.create({
     withCredentials: true
 });
@@ -33,8 +34,10 @@ async function remove(toyId) {
 async function save(toy) {
     let res
     if (toy._id) {
-        res = await axios.put(`http://localhost:3030/api/toy/${toy._id}`, toy)
-        return res.data
+        // res = await axios.put(`http://localhost:3030/api/toy`, toy)
+        // return res.data
+        const updatedToy = await httpService.put('toy', toy)
+        return updatedToy
     } else {
         res = await axios.post(`http://localhost:3030/api/toy`, toy)
         return res.data

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { onLogin, onLogout, onSignup } from '../store/user.actions.js'
+import { onLogin, onLogout, onSignup } from '../store/user.actions'
 import { UserMsg } from './UserMsg.jsx'
 import { Hamburger } from './Hamburger.jsx'
 
@@ -27,9 +27,9 @@ class _AppHeader extends React.Component {
             this.setState({ isHamburger: false })
     }
 
-    onLogout = () => {
-        this.props.onLogout()
-    }
+    // onLogout = () => {
+    //     this.props.onLogout()
+    // }
 
     render() {
         const { user } = this.props
@@ -49,7 +49,7 @@ class _AppHeader extends React.Component {
                             <NavLink to="/about"><span>About</span></NavLink>
                             {user && <NavLink to="/myProfile"><span>My Profile</span></NavLink>}
                             {!user && <NavLink to="/login"><span>Login <i className="fas fa-sign-in-alt"></i></span></NavLink>}
-                            {user && <NavLink onClick={this.onLogout} to="/"><span>Logout <i className="fas fa-sign-out-alt"></i></span></NavLink>}
+                            {user && <NavLink onClick={() => { this.props.onLogout() }} to="/"><span>Logout <i className="fas fa-sign-out-alt"></i></span></NavLink>}
                         </nav>
                     </div>
                 }

@@ -37,7 +37,6 @@ export function onSignup(credentials) {
 
 export function onLogout() {
     return async (dispatch) => {
-
         try {
             await userService.logout()
             dispatch({
@@ -48,6 +47,23 @@ export function onLogout() {
         catch (err) {
             showErrorMsg('Cannot logout')
             console.log('Cannot logout', err)
+        }
+    }
+}
+
+export function onUpdate(credentials) {
+    return async (dispatch) => {
+        try {
+            const user = await userService.update(credentials)
+            dispatch({
+                type: 'SET_USER',
+                user
+            })
+            return user
+        }
+        catch (err) {
+            showErrorMsg('Wrong password')
+            console.log('Cannot update user', err)
         }
     }
 }
