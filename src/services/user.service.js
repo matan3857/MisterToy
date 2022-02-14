@@ -56,7 +56,6 @@ async function login(credentials) {
 async function logout() {
     const res = await axios.post(`http://localhost:3030/api/auth/logout`)
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null)
-    console.log('res from user service',res)
     return res.data
     
     // sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null)
