@@ -30,26 +30,27 @@ function _UserProfile(props) {
     }
 
     return (
-        <div className="login-signup">
-            <div className="login-container flex column">
+        <div className="user-profile">
+            <div className="user-profile-container flex column">
                 <p>Your Profile</p>
-                <form className="login-form" onSubmit={onSubmit}>
+                <form className="user-profile-form" onSubmit={onSubmit}>
                     <input
-                        className='unmuttable'
+                        className='user-profile-input unmuttable'
                         type="text"
                         value={username}
                         readOnly
                     />
                     <input
+                        className='user-profile-input'
                         type="text"
                         value={fullname}
                         onChange={(ev) => setFullname(ev.target.value)}
                         placeholder="Fullname"
                     />
 
-                    <div className='flex'>
-                        <label>Is Admin</label>
-                        <input type="checkbox" value={isAdmin} checked={isAdmin} name="isAdmin" onChange={() => setIsAdmin(!isAdmin)} />
+                    <div className='is-admin-container flex'>
+                        <label className='is-admin-label' for='isAdmin'>Is Admin</label>
+                        <input className='is-admin-checkbox' type="checkbox" value={isAdmin} checked={isAdmin} name="isAdmin" onChange={() => setIsAdmin(!isAdmin)} />
                     </div>
                     {isUserUpdated && <p>User updated!</p>}
                     <button className="login-signup-btn">Save!</button>
