@@ -1,7 +1,4 @@
 import { httpService } from './http.service'
-import { storageService } from './async-storage.service'
-import { userService } from './user.service'
-// import { socketService, SOCKET_EVENT_REVIEW_ADDED } from './socket.service'
 
 export const reviewService = {
   add,
@@ -9,13 +6,11 @@ export const reviewService = {
   remove
 }
 
-
 // More ways to send query params:
 // return axios.get('api/toy/?id=1223&balance=13')
 // return axios.get('api/toy/?', {params: {id: 1223, balanse:13}})
 
 function query(filterBy) {
-  console.log('filterBy', filterBy)
   // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
   var queryStr = (!filterBy) ? '' : `?toyId=${filterBy.toyId}`
   return httpService.get(`review${queryStr}`)
@@ -53,4 +48,3 @@ async function add(review) {
 //     reviews = freshReviews
 //   });
 // })()
-

@@ -1,6 +1,6 @@
 import React from "react"
 
-export function ToyPreview({ user, toy, onRemoveToy, onEditToy, onToyDetails }) {
+export function ToyPreview({ toy, onRemoveToy, onEditToy, onToyDetails }) {
     return (
         <div className="toy-card">
             <h4>{toy.name}</h4>

@@ -89,7 +89,5 @@ function filterToys(toys, filterBy) {
             return filterBy.selectedOptions.some(option => toy.labels.includes(option))
         })
     }
-
-
     return toys.filter(toy => toy.name.toLowerCase().includes(filterBy.name.toLowerCase()))
 }

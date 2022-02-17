@@ -45,13 +45,6 @@ export class ChatApp extends React.Component {
 
     }
 
-    // sendMsg = ev => {
-    //     ev.preventDefault()
-    //     const from = this.props.loggedInUser?.fullname || 'Me'
-    //     socketService.emit('chat newMsg', { from, txt: this.state.msg.txt })
-    //     this.setState({ msg: { from: 'Me', txt: '' } })
-    //   }
-
     render() {
         const { txt, msgs } = this.state;
         return (

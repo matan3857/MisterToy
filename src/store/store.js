@@ -3,8 +3,6 @@
 
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
-
-
 import { toyReducer } from './toy.reducer.js'
 import { userReducer } from './user.reducer.js'
 import { reviewReducer } from './review.reducer.js'

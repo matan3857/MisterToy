@@ -1,8 +1,6 @@
 import { reviewService } from '../services/review.service'
 // import { socketService, SOCKET_EVENT_REVIEW_ADDED } from '../services/socket.service'
 
-const SCORE_FOR_REVIEW = 500
-
 export function loadReviews(filterBy) {
   
   return async dispatch => {
