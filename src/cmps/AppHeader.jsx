@@ -37,6 +37,7 @@ class _AppHeader extends React.Component {
         return (
             <header className="main-header">
                 {isHamburger && <Hamburger />}
+                <h2>Hello check</h2>
 
                 {!isHamburger &&
                     <div className="reg-nav">
