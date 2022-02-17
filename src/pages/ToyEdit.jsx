@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { editToy } from '../store/toy.actions.js'
+import { onEditToy } from '../store/toy.actions.js'
 import { toyService } from '../services/toy.service.js'
 
 function _ToyEdit(props) {
@@ -17,7 +17,7 @@ function _ToyEdit(props) {
 
   const onSubmit = async (ev) => {
     ev.preventDefault();
-    await props.editToy(toy)
+    await props.onEditToy(toy)
     props.history.push('/toy')
   };
 
@@ -49,7 +49,7 @@ function _ToyEdit(props) {
 }
 
 const mapDispatchToProps = {
-  editToy
+  onEditToy
 }
 
 export const ToyEdit = connect(null, mapDispatchToProps)(_ToyEdit)
