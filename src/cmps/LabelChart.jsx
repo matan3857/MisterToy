@@ -3,8 +3,6 @@ import { Pie } from 'react-chartjs-2';
 
 export const LabelChart = ({ labelsData }) => {
 
-    // console.log('toys from Dashboard', toys)
-
     const data = {
         labels: ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor'],
         datasets: [

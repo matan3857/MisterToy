@@ -21,7 +21,6 @@ export class ChatApp extends React.Component {
     }
 
     addMsg = newMsg => {
-        console.log('newMsg', newMsg)
         this.setState(prevState => ({ msgs: [...prevState.msgs, newMsg] }))
         // if (this.state.isBotMode) this.sendBotResponse();
     }
@@ -55,7 +54,6 @@ export class ChatApp extends React.Component {
 
     render() {
         const { txt, msgs } = this.state;
-        console.log('msgs', msgs)
         return (
             <section className="chat-container">
                 {msgs.length !== 0 && <section className="chat-list">

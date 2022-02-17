@@ -45,32 +45,23 @@ export class _ToyDetails extends React.Component {
         //LOAD REVIEW
         this.props.loadReviews({toyId})
     }
-
     componentWillUnmount() {
         document.body.removeEventListener("keydown", this.escFunction, false);
     }
-
     setShown = () => {
         this.setState({ isShown: true })
     }
-
     escFunction = (event) => {
         if (event.keyCode === 27) {
             this.setState(prevState => ({ ...prevState, isShown: false }))
         }
     }
-
     onAddReview = (review) => {
         this.props.addReview(review)
     }
     onRemoveReview = async reviewId => {
         await this.props.removeReview(reviewId)
       }
-      
-    // onRemoveReview = (reviewId) => {
-    //     console.log('reviewId',reviewId)
-    //     this.props.removeReview(reviewId)
-    // }
 
     render() {
         const { toy, isShown } = this.state

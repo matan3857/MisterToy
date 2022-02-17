@@ -8,7 +8,7 @@ export function loadReviews(filterBy) {
   return async dispatch => {
     try {
       const reviews = await reviewService.query(filterBy)
-      console.log('reviews in FRONT',reviews)
+      // console.log('reviews in FRONT',reviews)
       dispatch({ type: 'SET_REVIEWS', reviews })
       // socketService.on(SOCKET_EVENT_REVIEW_ADDED, (review) =>{
       //   dispatch({ type: 'ADD_REVIEW', review })
@@ -21,7 +21,7 @@ export function loadReviews(filterBy) {
 }
 
 export function addReview(review) {
-  console.log('review from action',review)
+  // console.log('review from action',review)
   return async dispatch => {
     try {
       const addedReview = await reviewService.add(review)

@@ -4,8 +4,6 @@ import { onUpdate } from '../store/user.actions'
 
 function _UserProfile(props) {
     const { user } = props
-
-    console.log('user', user)
     const [username, setUsername] = useState('');
     const [fullname, setFullname] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);

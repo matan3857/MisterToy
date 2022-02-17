@@ -84,7 +84,6 @@ export function handleChange(event, filterBy) {
     return (dispatch) => {
         var name, value;
         var filter;
-        console.log('filterBy', filterBy)
 
         if (Array.isArray(event)) {
             filter = { selectedOptions: event.map(option => option.label) }

@@ -3,8 +3,6 @@ import { Pie } from 'react-chartjs-2';
 
 export const PriceChart = ({ pricesData }) => {
 
-    // console.log('toys from Dashboard', toys)
-
     const data = {
         labels: ['0$ ~ 25$', '26$ ~ 50$', '51$ ~ 75$', '76$ ~ 100$', '100$+'],
         datasets: [
