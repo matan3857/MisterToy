@@ -1,66 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-
 import { editToy } from '../store/toy.actions.js'
 import { toyService } from '../services/toy.service.js'
 
-class _ToyEdit extends React.Component {
-  state = {
-    toy: null,
-  }
+function _ToyEdit(props) {
+  const [toy, setToy] = useState(null);
 
-  componentDidMount = async () => {
-    const { toyId } = this.props.match.params
-    const toy = await toyService.getById(toyId)
-    this.setState(prevState => ({ ...prevState, toy }))
-  }
+  useEffect(() => {
+    const { toyId } = props.match.params
+    const fetchData = async () => {
+      const toy = await toyService.getById(toyId)
+      setToy(toy)
+   }
+   fetchData()
+  }, []);
 
-  handleChange = (event) => {
-    const { value, name } = event.target
-    this.setState((prevState) => ({ ...prevState, toy: { ...prevState.toy, [name]: value } }))
-  }
+  const onSubmit = async (ev) => {
+    ev.preventDefault();
+    await props.editToy(toy)
+    props.history.push('/toy')
+};
 
-  onSubmit = async (event) => {
-    event.preventDefault()
-    const { toy } = this.state
-    await this.props.editToy(toy)
-    this.props.history.push('/toy')
-  }
-
-  render() {
-    const { toy } = this.state
-    if (!toy) return <div> Loading...</div>
-    return (
-      <div>
-        <h1>ToyEdit</h1>
-        <form className="edit-toy" onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={toy.name}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            value={toy.price}
-            onChange={this.handleChange}
-            required
-          />
-          <button>Submit Edit</button>
-        </form>
-      </div>
-    )
-  }
-}
-
-function mapStateToProps(state) {
-  return {}
+  if (!toy) return <div> Loading...</div>
+  return (
+    <div>
+      <h1>ToyEdit</h1>
+      <form className="edit-toy" onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="name"
+          value={toy.name}
+          onChange={(ev) => setToy({ ...toy, name: ev.target.value })}
+          required
+        />
+        <input
+          type="number"
+          name="price"
+          value={toy.price}
+          onChange={(ev) => setToy({ ...toy, price: ev.target.value })}
+          required
+        />
+        <button>Submit Edit</button>
+      </form>
+    </div>
+  )
 }
 
 const mapDispatchToProps = {
   editToy
 }
 
-export const ToyEdit = connect(mapStateToProps, mapDispatchToProps)(_ToyEdit)
+export const ToyEdit = connect(null, mapDispatchToProps)(_ToyEdit)
