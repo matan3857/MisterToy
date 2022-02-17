@@ -1,0 +1,27 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background-color: #414a4f;
+    justify-content: space-evenly;
+    box-shadow: 0 0 8px 1px #00000085;
+    height: 5vh;
+    padding: 0vw 5vw;
+    .contact-us {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        a {
+            display: block;
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s linear;
+        }
+    }
+}
